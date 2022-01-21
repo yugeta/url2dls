@@ -1,0 +1,9 @@
+trash
+data
+node_modules
+output
+
+docker-compose.yml
+Dockerfile
+
+package-lock.json
