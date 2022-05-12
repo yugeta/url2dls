@@ -26,7 +26,7 @@ URLを指定する場合
   $ node index --url http://example.com/index.html
 
 テキストに書かれたURLリストを指定する場合、
-  $ node index --list data/url_lists.txt
+  $ node index --file data/url_lists.txt
 
 出力画像フォーマット
   * 何も付けないとPNG形式、jpegの場合は、--type jpg
