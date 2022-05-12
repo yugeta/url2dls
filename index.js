@@ -1,5 +1,5 @@
 const fs              = require("fs");
-const get_fullScreen  = require(__dirname + "/app/get_fullScreen.js");
+// const get_fullScreen  = require(__dirname + "/app/get_fullScreen.js");
 const get_fullScreens = require(__dirname + "/app/get_fullScreens.js");
 const mkdir           = require(__dirname + '/app/mkdir.js');
 const argv            = require(__dirname + '/app/argv.js');
@@ -54,9 +54,16 @@ const argv            = require(__dirname + '/app/argv.js');
     offset = 0;
   }
 
+  // options
+if(argv.options["option"] && fs.existsSync(argv.options["option"])){
+  const option_json = fs.readFileSync(argv.options["option"] , "utf-8");
+  global.option = JSON.parse(option_json)
+}
+
+
   // capture
   url_lists = typeof url_lists === "string" ? [url_lists] : url_lists;
-  await get_fullScreens(output , url_lists , output_type);
+  await get_fullScreens(output , url_lists , output_type , global.option);
 
   console.log("Finished !! ("+ (((+new Date()) - global.tm_st)/1000) +" s)");
 })()

@@ -2,19 +2,23 @@ const fs           = require("fs");
 const puppeteer    = require('puppeteer');
 const url2filename = require(__dirname + '/url2filename');
 
-module.exports = async function(dir , url_lists , output_type){
+module.exports = async function(dir , url_lists , output_type , option){
   if(!url_lists || !url_lists.length){return;}
-  
+
+  option = option || {}
+
   // const path_chromium = '/usr/bin/chromium-browser';
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox'],
+    ua : option.ua || null
     // executablePath: path_chromium
   });
   const page = await browser.newPage();
   page.setViewport({
-    width: 1200, 
-    height: 800
+
+    width: option.width || 1200, 
+    height: option.height || 800
   })
 
   let tm_st = global.tm_st;
